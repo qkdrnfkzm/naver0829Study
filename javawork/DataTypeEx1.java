@@ -24,5 +24,6 @@ public class DataTypeEx1{
 	//실행시 인자로 넘어오는 문자열을 확인해보자
 	System.out.println(args[0]);//배열의 첫 문자 출력
 	
+
   }
 }
