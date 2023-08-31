@@ -1,5 +1,6 @@
 package bit701.day0831;
 
+import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class Ex10_Exam {
@@ -16,7 +17,7 @@ public class Ex10_Exam {
 //		
 //		총금액 : 6000원
 //		5개 이상으로 10프로 할인된 금액 : 5400원
-		
+		NumberFormat numberformat1 = NumberFormat.getInstance();
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.println("상품명을 입력하세요");
@@ -28,9 +29,16 @@ public class Ex10_Exam {
 		int total = count*prise;		
 
 		if (count>=5) {
-			System.out.println("상품명 : "+name+"\n수량 : "+count+"\n단가 : "+prise+"\n총금액 : "+total+"원"+"\n5개 이상으로 10프로 할인된 금액 : "+(int)(total*0.9)+"원");
+			System.out.println("상품명 : "+name);
+			System.out.println("수량 : "+numberformat1.format(count)+"개");
+			System.out.println("단가 : "+numberformat1.format(prise)+"원");
+			System.out.println("총금액 : "+numberformat1.format(total)+"원");
+			System.out.println("5개 이상으로 10프로 할인된 금액 : "+numberformat1.format((int)(total*0.9))+"원");
 		}else {
-			System.out.println("상품명 : "+name+"\n수량 : "+count+"\n단가 : "+prise+"\n총금액 : "+total+"원");	
+			System.out.println("상품명 : "+name);
+			System.out.println("수량 : "+numberformat1.format(count)+"개");
+			System.out.println("단가 : "+numberformat1.format(prise)+"원");
+			System.out.println("총금액 : "+numberformat1.format(total)+"원");	
 		}
 
 		
