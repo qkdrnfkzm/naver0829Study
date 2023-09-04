@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h3.title{
+            color : cornflowerblue;
+            background-color: ivory;
+            width: 300px;
+            padding-left: 150px;    /*태그 안쪽 여백*/
+        }
+        h4{
+            font-family: "Comic Sans MS";
+            font-size: 15px;
+            color: coral;
+            margin-left: 100px;     /*태그 바깥쪽 여백*/
+        }
+
+    </style>
+</head>
+<body>
+    <!--
+        구구단 숫자 2~9까지 입력을 받아서 해당 구구단을 출력하시오
+        단, 2~9사이의 값이 아닐경우 '이미지(아무거나)' 출력하기
+      -->
+<h2>구구단 입력받아 출력하기</h2>
+      <script>
+        let dan=prompt("구구단 출력을 원하는 단을 입력하세요(2~9)",2);
+
+        if(dan<2 || dan>9)
+        {
+            document.write(`<img src="../mycar/mycar1.png" art="사진" width="200">`)
+        }else{
+            
+            let s = `<h3 class="title"> * * ${dan}단 * * </h3>`
+            for(let i=1;i<=9;i++)
+            {
+                s+=`<h4>${dan} X ${i} = ${dan*i}</h4>`
+            }
+            document.write(s)
+        }
+
+      </script>
+
+
+</body>
+</html>

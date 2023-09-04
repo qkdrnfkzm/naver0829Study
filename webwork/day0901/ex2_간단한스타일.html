@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Inter&family=Jua&family=Nanum+Pen+Script&family=REM&family=Single+Day&display=swap" rel="stylesheet">
+<!-- 문서 삽입형 스타일 적용 -->
+<style>
+    
+    /* style 영역에서의 주석처리 */
+    span{
+        font-family:'Inter';
+    }
+    
+    /* class:. , id:# 으로 스타일 적용 */
+    .one{       /*태그 상관없이 class 명이 one인 경우 모두 적용 */
+        font-size: 30px;
+    }
+    
+    div.one{
+        color:crimson;
+    }
+
+    /* class가 two인 모든태그, 그리고 span태그중 class가 three인 경우 */
+    .two,span.three{
+        background-color: lightgoldenrodyellow;
+    }
+
+    /* div 태그중 클래스명이 one, three 인 경우에만 border 적용 */
+    div.one, div.three{
+        border: 5px solid deeppink; /* 굵기, 선종류, 색상 : 따로줘도 되고 같이 줘도 된다. */
+    }
+    h1{
+        border-width: 5px;              /* 테두리 굵기 */
+        border-style: double;           /* 테두리 스타일 */
+        border-color: darkblue;       /* 테두리 색상 */
+        border-radius: 20px;            /* 테두리 굴곡 */
+    }
+
+</style>
+</head>
+<body>
+    <!-- 스타일정의 : 태그 삽입형 -->
+    <!-- color - 글자색 / font-family - 폰트 / background-color - 배경색 -->
+    <!-- color : 영문 색, 16진수 컬러코드, rgb, rgba(레드,그린,블루,투명도) -->
+    <h1 style="color:purple;font-family:'Gamja Flower';background-color: #c6c92f;">오늘 날씨가 좋아요</h1>
+    <h1 style="color:rgb(11,179,200);background-color: rgba(120,20,130,0.5);font-family:'REM';">Hava a Good day</h1>
+    <span class="one">Java</span>
+    <span class="two">HTML</span>
+    <span class="three">JavaScript</span>
+    <hr>
+    <div class="one">소나타</div>
+    <div class="two">그렌져</div>
+    <div class="three">아반떼</div>
+
+
+</body>
+</html>

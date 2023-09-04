@@ -53,10 +53,6 @@ public class Ex9_SwitchWeek {
 		
 		
 		
-		
-		
-		
-		
 		Calendar cal = Calendar.getInstance();
 		
 		
