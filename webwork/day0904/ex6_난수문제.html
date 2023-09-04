@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div#log{
+            background-color: beige;
+            color: crimson;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="새로운 난수 발생하기" id="btnrnd">
+    <br>
+    <input type="text" id="su" >
+    <input type="button" value="OK" id="ok">
+        
+    <div id="log"></div>
+    
+    <script>
+        let rnd;    //난수를 구할 변수
+        let s = document.getElementById("su");
+        let o = document.getElementById("ok");
+
+        //난수버튼 이벤트
+        document.getElementById("btnrnd").onclick=function(){
+            log.innerHTML="";
+            o.disabled=false;
+            s.value="";
+            rnd=parseInt((Math.random()*15)+1);
+            //콭솔에 출력
+            console.log(rnd);
+        }
+
+        
+        o.onclick=function()
+        {
+            let data = s.value;
+            let c="";
+
+            if(rnd>data){
+                log.innerHTML+=data+" 보다 큽니다<br>"
+            } else if(rnd<data){
+                log.innerHTML+=data+" 보다 작습니다<br>"
+            } else{
+                log.innerHTML+="정답입니다 ("+rnd+")<br>";
+                log.innerHTML+=`<img src="../mycar/mycar${rnd}.png" width="300px">`;
+                o.disabled=true;
+            }
+            s.value="";
+            s.focus();
+        }
+    </script>
+</body>
+</html>
