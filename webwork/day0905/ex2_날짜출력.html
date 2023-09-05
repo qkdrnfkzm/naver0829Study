@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #time{
+            font-size: 40px;
+            font-family: 'Comic Sans MS';
+            background-color: beige;
+            color: crimson;
+            position: absolute;
+            left: 30px;
+            top: 100px;
+            width: 500px;
+            height: 150px;
+            box-shadow: 5px 5px 5px pink;
+            
+            text-align: center;
+            line-height: 150px;     /*한줄일 경우 행높이를 height와 같은 값을 주면 세로방향 가운데 정렬*/
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            init_time();    //윈도우 로딩시 init_time 함수 호출
+
+            //지정 시간마다 반복 호출
+            setInterval(function() {
+                init_time();
+            }, 1000);
+        }
+        
+        //일반 사용자 함수
+        function init_time(){
+            //현재 날짜와 시간을 얻어서 출력
+            let date=new Date();
+
+            let y=date.getFullYear();
+            let m=date.getMonth()+1;
+            let d=date.getDate();
+
+            let hh=date.getHours();
+            let mm=date.getMinutes();
+            let ss=date.getSeconds();
+
+            time.innerHTML=`${y}-${m}-${d} ${hh}:${mm}:${ss}`;
+        }
+    </script>
+</head>
+<body>
+    <div id="time"></div>
+</body>
+</html>

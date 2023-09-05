@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        div.buttons{
+            margin-left: 10px;
+            margin-bottom: 20px;
+        }
+
+        div button{
+            width: 80px;
+            height: 40px;
+            font-size: 20px;
+        }
+        #photo{
+            border: 5px solid gold;
+            box-shadow: 5px 5px 5px goldenrod;
+        }
+    </style>
+</head>
+<body>
+    <div class="buttons">
+        <button id="small">작게</button>
+        <button id="large">크게</button>
+        <button id="rnd">랜덤</button>
+        <br>
+        현재 사진 너비 : <span id="fsize"></span>
+    </div>
+    
+    <img src="../연예인사진/1.jpg" style="width: 300px;" id="photo">
+
+    <script>
+        
+        let p = document.getElementById("photo");
+
+        document.getElementById("large").onclick=function(){
+            
+            let ps = parseInt(p.style.width,10);
+            if(ps<600){ ps+=5; }
+            p.style.width=ps+"px";
+            fsize.innerText=ps+"px";
+        }
+        document.getElementById("small").onclick=function(){
+            let ps = parseInt(p.style.width,10);
+            if(ps>50){ ps-=5; }
+            p.style.width=ps+"px";
+            fsize.innerText=ps+"px";
+        }
+        document.getElementById("rnd").onclick=function(){
+            //1~20 난수 발생
+            let r=parseInt(Math.random()*20)+1;
+
+            //이미지의 src값 변경
+            p.setAttribute("src",`../연예인사진/${r}.jpg`)
+        }
+    </script>
+</body>
+</html>
