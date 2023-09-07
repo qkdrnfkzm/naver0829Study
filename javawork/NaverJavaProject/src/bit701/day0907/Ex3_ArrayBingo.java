@@ -51,15 +51,16 @@ public class Ex3_ArrayBingo {
 			if(data[0][2]==data[1][1]&&data[0][2]==data[2][0]) {
 				bingo++;
 			}
-
+			
+			//빙고 결과 출력
 			if(bingo>0) {
-				System.out.println("빙고:"+bingo+"\n");
+				System.out.println("빙고:"+bingo);
 			}else {
-				System.out.println("꽝\n");
+				System.out.println("꽝");
 			}
-
-
-			System.out.println("종료:q");
+			
+			//종료
+			System.out.println("종료:q>");
 			String ans = sc.nextLine();
 			if(ans.equalsIgnoreCase("q"))
 				break;
