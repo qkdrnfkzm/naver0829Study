@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Inter&family=Jua&family=Nanum+Pen+Script&family=REM&family=Single+Day&display=swap" rel="stylesheet">
+    <style>
+        body * {
+            font-family: "Jua";
+        }
+    </style>
+    <script>
+        let com,user;
+        window.onload=function(){
+            com=new Array(3);
+            user=new Array(3);
+
+            let txtsu=document.getElementById("txtsu");
+            let msg=document.getElementById("msg");
+
+            //새로운 난수 구하기 버튼 이벤트
+            document.getElementById("btnrnd").onclick=function(){
+                for(let i=0;i<com.length;i++){
+                    com[i]=parseInt(Math.random()*9)+1  //1~9난수 발생
+                    
+                    //중복체크
+                    for(let j=0;j<i;j++){
+                        if(com[i]==com[j]){
+                            i--;
+                            break;
+                        }
+                    }
+                }
+                alert("새로운 난수가 생성되었습니다"+com)
+                txtsu.value="";
+                msg.innerHTML="";
+            }
+
+            //확인 버튼 이벤트
+            document.getElementById("btnok").onclick=function(){
+                //입력한 값 얻기
+                let su=Number(txtsu.value);
+
+                user[0]=parseInt(su/100);
+                user[1]=parseInt((su%100)/10);
+                user[2]=parseInt(su%10);
+
+                //배열 user와 배열 com을 비교하여
+                //숫자가 맞을경우 자리수 비교후 스트라이크, 볼 변수 증가하기
+                let strike=0,ball=0;
+
+                //
+                for(let i=0;i<com.length;i++){
+                    for (let j = 0; j < com.length; j++) {
+                        if(com[i]==user[j]){
+                            if(i==j){
+                                strike++;
+                            }else{
+                                ball++;
+                            }
+                        }
+                    }
+                }
+                if(strike==3){
+                    msg.innerHTML+=`${su} >> 정답입니다<br>`;
+                    msg.innerHTML+=`<img src="../mycar/mycar1.png" width="300px">`;
+                }else{
+                    msg.innerHTML+=`<b style="color:red">${su} >> ${strike}S ${ball} B</b><br>`;
+                }
+                txtsu.value="";
+            }
+
+            //숫자 입력 후 엔터 이벤트
+            document.getElementById("txtsu").onkeyup=function(e){
+                if(e.keyCode==13){
+
+                    //숫자가 아닐경우 경고 후 함수 종료
+                    //isNaN(Not a Number : 숫자가 아닐 경우 true)
+                    if(isNaN(this.value)){
+                        alert("숫자만 입력해주세요")
+                        this.value="";
+                        this.focus();
+                        return;
+                    }
+                    document.getElementById("btnok").click();
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h3>야구게임</h3>
+    <div>
+        <button type="button" id="btnrnd">새 난수 발생</button>
+        <br>
+        <br>
+        <input type="text" id="txtsu" width="100px" autofocus>
+        <button type="button" id="btnok">OK</button>
+        <br><br>
+        <div id="msg" style="background-color: beige; width: 300px;"></div>
+        <div id="photo"></div>
+    </div>
+    
+    
+</body>
+</html>

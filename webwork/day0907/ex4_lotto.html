@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Inter&family=Jua&family=Nanum+Pen+Script&family=REM&family=Single+Day&display=swap" rel="stylesheet">
+    <style>
+        body * {
+            font-family: "Jua";
+        }
+        #container{
+            background-color: skyblue;
+            width: 500px;
+            height: 300px;
+        }
+        .title{
+            padding-top: 30px;
+            width: 500px;
+            height: 50px;
+        }
+        #count{
+            margin-left: 150px;
+            font-size: 30px;
+            color: blue;
+            float: left;
+            margin-right: 10px;
+        }
+        #now{
+            font-size: 15px;
+            color: crimson;
+            padding-top: 10px;
+        }
+        .no{
+            margin: 0 auto;
+            /* margin-top: 30px;
+            margin-left: 25px; */
+            background-color: white;
+            width: 450px;
+            height: 100px;
+            border-radius: 100px;
+        }
+        div.box{
+        float:left;
+        width: 50px;
+        height: 50px;
+        border: 0px solid black;
+        border-radius: 100px;
+        margin-top: 23px;
+        margin-left: 20px;
+        text-align: center;
+        line-height: 50px;
+        font-size: 20px;
+        }
+        #btn{
+            background-color: aquamarine;
+            margin-top: 20px;
+            margin-left: 170px;
+            border-radius: 10px;
+            width: 150px;
+            height: 40px;
+        }
+    </style>
+    <script>
+        
+        window.onload=function(){
+            init_time();
+            
+            function init_time(){
+                let date = new Date();
+
+                let y=date.getFullYear();
+                let m=date.getMonth()+1;
+                let d=date.getDate();
+
+                now.innerHTML=`${y}-${m<10?"0"+m:m}-${d<10?"0"+d:d}`;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="container">
+        <div class="title">
+            <div id="count">1212회</div>
+            <div id="now"></div>
+        </div>
+        
+        <div class="no">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+        <button type="button" id="btn">로또</button>
+    </div>
+    
+    <script>
+       
+        document.getElementById("btn").onclick=function(){
+
+            //여러개의 class 요소들을 배열변수로 얻는다
+            let box = document.querySelectorAll("div.box");
+            let b = document.getElementsByClassName("box")
+                  
+            //console.log(p.innerText);
+            //console.log(typeof(box));
+            for(let i=0;i<box.length;i++)
+            {
+                box[i].innerHTML=parseInt(Math.random()*45+1);
+                //console.log(typeof(parseInt(box[i].innerText)));
+                
+                for(let j=0;j<i;j++){
+                    
+                    if(box[i].innerText==box[j].innerText){
+                        i--;
+                        break;
+                    }
+                    if(parseInt(box[i].innerText)<parseInt(box[j].innerText)){
+                        let temp = box[i].innerText;
+                        box[i].innerText=box[j].innerText;
+                        box[j].innerText=temp;
+                    }
+                }
+            }
+            for(let i=0;i<box.length;i++){
+                if(parseInt(box[i].innerText)%3==0){
+                    b[i].setAttribute("style","background-color:yellow;color:black")
+                }else if(parseInt(box[i].innerText)%5==0){
+                    b[i].setAttribute("style","background-color:green;color:;color:white")
+                }else if(parseInt(box[i].innerText)%7==0){
+                    b[i].setAttribute("style","background-color:skyblue;color:coral")
+                }else if(parseInt(box[i].innerText)%11==0){
+                    b[i].setAttribute("style","background-color:blue;color:yellow")
+                }else{
+                    b[i].setAttribute("style","background-color:crimson;color:aqua")
+                }
+            }
+        }
+    </script>
+</body>
+</html>
