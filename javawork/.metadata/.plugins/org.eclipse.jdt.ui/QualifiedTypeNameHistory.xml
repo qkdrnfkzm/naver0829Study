@@ -30,7 +30,6 @@
     <fullyQualifiedTypeName name="bit701.day0911.CallBy"/>
     <fullyQualifiedTypeName name="bit701.day0911.Student"/>
     <fullyQualifiedTypeName name="bit701.day0911.Kiwi"/>
-    <fullyQualifiedTypeName name="bit701.day0911.Account"/>
     <fullyQualifiedTypeName name="bit701.book_test.Book231_Calculator"/>
     <fullyQualifiedTypeName name="bit701.book_test.Book235_Computer"/>
     <fullyQualifiedTypeName name="bit701.book_test.Book237_Car"/>
@@ -45,7 +44,13 @@
     <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="bit701.book_test.MyStudent"/>
     <fullyQualifiedTypeName name="bit701.book_test.Sawon"/>
+    <fullyQualifiedTypeName name="bit701.book_test.Account"/>
+    <fullyQualifiedTypeName name="java.lang.reflect.Constructor"/>
+    <fullyQualifiedTypeName name="bit701.day0912.Ex3_FileBankRead"/>
+    <fullyQualifiedTypeName name="java.io.FileReader"/>
+    <fullyQualifiedTypeName name="java.io.BufferedReader"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
-    <fullyQualifiedTypeName name="bit701.book_test.Account"/>
+    <fullyQualifiedTypeName name="bit701.day0911.Account"/>
+    <fullyQualifiedTypeName name="java.io.FileWriter"/>
 </qualifiedTypeNameHistroy>
