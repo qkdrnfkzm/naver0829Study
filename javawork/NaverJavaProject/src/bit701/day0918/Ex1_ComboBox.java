@@ -2,7 +2,6 @@ package bit701.day0918;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.datatransfer.Clipboard;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -132,20 +131,10 @@ public class Ex1_ComboBox extends JFrame {
 				lblMessage.setForeground(Color.blue);
 			}
 		});
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 
 	public static void main(String[] args) {
-
 		Ex1_ComboBox ex = new Ex1_ComboBox("ComboBox");
-
 	}
 
 }
