@@ -70,7 +70,7 @@ public class Ex4_ServerChat extends JFrame implements Runnable {
 				br = new BufferedReader(new InputStreamReader(is));
 				pw = new PrintWriter(mySocket.getOutputStream());
 			} catch (IOException e) {
-//				e.printStackTrace();
+				//e.printStackTrace();
 			}
 		}
 

@@ -49,7 +49,7 @@ public class Ex4_ClientChat extends JFrame implements Runnable, ActionListener {
 	public void run() {
 		System.out.println("run() 메소드 정상 호출");
 
-		// 서버에 접속 - Socket이 만들어짐
+		//서버에 접속 - Socket이 만들어짐
 		try {
 			clientSocket = new Socket(tfServerIp.getText(), 6000);
 
