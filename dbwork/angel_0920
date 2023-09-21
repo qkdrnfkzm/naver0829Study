@@ -1,0 +1,158 @@
+--angel
+--전체 시퀀스 조회
+SELECT * FROM seq;
+--sequence 생성
+CREATE SEQUENCE seq1 START WITH 1 INCREMENT BY 1;     -- 1부터 1씩 증가하는 시퀀스 생성
+CREATE SEQUENCE seq2 START WITH 5 INCREMENT BY 3 nocache;     -- 5부터 3씩 증가, cache 값은 0
+CREATE SEQUENCE seq3 MAXVALUE 100 nocache;     -- START WITH 와 INCREMENT 생략시 1로 초기값 지정
+
+--값 발생 시키기
+SELECT seq1.NEXTVAL, seq2.NEXTVAL, seq3.NEXTVAL FROM dual;
+
+--시퀀스 제거
+DROP SEQUENCE seq1;
+DROP SEQUENCE seq2;
+DROP SEQUENCE seq3;
+
+--새 시퀀스 만들기
+CREATE SEQUENCE seq_test NOCACHE;
+
+--table 생성
+CREATE TABLE test(
+    NUM NUMBER(3) PRIMARY KEY,
+    NAME VARCHAR2(20) NOT NULL,
+    BLOOD CHAR(2) DEFAULT 'A',
+    WEIGHT NUMBER(5,2),
+    BIRTHDAY DATE);
+    
+--데이터 추가
+INSERT INTO test(NUM,NAME) VALUES (seq_test.nextval, '캔디');
+INSERT INTO test VALUES (seq_test.nextval,'캐서린','AB',67.89,SYSDATE);
+--제약에 안맞는 경우 오류
+INSERT INTO test (NUM, BLOOD) VALUES (seq_test.nextval,'o');
+INSERT INTO test (NUM, NAME, BLOOD) VALUES (2,'LEE','o');
+
+INSERT INTO test VALUES(seq_test.nextval,'강호동','B',121.23,'2020-10-10');
+INSERT INTO test VALUES(seq_test.nextval,'유재석','A',72.7,'1979-12-25');
+INSERT INTO test VALUES(seq_test.nextval,'박명수','O',64.62,'1982-09-09');
+
+--rollback;
+commit;
+
+INSERT INTO test VALUES(seq_test.nextval,'노홍철','B',79.82,'1988-01-12');
+
+--이상태에서 롤백 하면 어디까지 지워질까
+rollback;
+
+--수정 : 강호동의 혈액형을 AB형으로
+UPDATE test SET BLOOD='AB' WHERE name='강호동';
+
+UPDATE test SET WEIGHT=80.8, BIRTHDAY=SYSDATE WHERE NUM=9;
+
+--삭제
+DELETE FROM test;
+
+--NUM이 9,11,13 삭제
+DELETE FROM test WHERE NUM IN(9,11,13);
+
+--테이블 삭제
+DROP TABLE test;
+--시퀀스 삭제
+DROP SEQUENCE seq_test;
+
+-----------------------------------------------------------------------------------------------------
+create table person(
+    num number(3) constraint person_pk_num primary key,
+    blood char(2));
+--기존 제약 제거    
+alter table person drop constraint person_pk_num;    
+--다시 primary key에 대한 제약 조건 추가
+alter table person add constraint person_num_pk primary key(num);
+
+--blood에 대하여 check 제약 조건 추가
+alter table person add constraint person_ck_blood check (blood in('A','B','AB','O'));
+
+
+--데이터 추가
+insert into person values (1,'A');
+insert into person values (1,'B');    -- 오류 : 무결성 제약 조건(ANGEL.PERSON_NUM_PK)에 위배
+insert into person values (2,'o');   -- 체크 제약조건(ANGEL.PERSON_CK_BLOOD)이 위배되었습니다
+insert into person values (2,'O');
+
+--컬럼을 추가/제거/수정
+ALTER TABLE PERSON ADD NAME VARCHAR2(20);
+ALTER TABLE PERSON ADD SCORE NUMBER(5,1) DEFAULT 30.5;
+
+ALTER TABLE PERSON DROP COLUMN NUM;
+
+ALTER TABLE PERSON ADD JAVA NUMBER(3) DEFAULT 0;
+ALTER TABLE PERSON ADD CONSTRAINT PERSON_CK_JAVA CHECK(JAVA>=0 AND JAVA<=100);
+
+ALTER TABLE PERSON RENAME COLUMN JAVA TO SPRING;
+
+--데이터 추가시 컬럼 순서대로 주기 싫을 경우 컬렴명 주면된다
+INSERT INTO PERSON (NAME,BLOOD,SPRING,SCORE) VALUES ('LEE','O',90,35);
+
+DROP TABLE PERSON;
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+--문제
+--테이블 생성 (student) : num 숫자(5),name 문자열(10),height 숫자(5,1),
+--  java 숫자(3) 기본값 10,spring 숫자(3) 기본값 10, ban 문자열(20)
+CREATE TABLE STUDENT(
+    NUM NUMBER(5),
+    NAME VARCHAR(10),
+    HEIGHT NUMBER(5,1),
+    JAVA NUMBER(3) DEFAULT 10,
+    SPRING NUMBER(3) DEFAULT 10,
+    BAN VARCHAR(20));
+
+--시퀀스 생성  seq_stu  기본(1부터 1씩증가), nocache 추가
+CREATE SEQUENCE SEQ_STU NOCACHE;
+
+--제약조건들 추가
+--num  에 primary key 추가(student_pk_nu)
+ALTER TABLE STUDENT ADD CONSTRAINT STUDENT_PK_NU PRIMARY KEY(NUM);
+
+--java,spring 은 1~100 만 가능하도록 check 제약조건 추가
+ALTER TABLE STUDENT ADD CONSTRAINT STUDENT_CK_JAVA CHECK(JAVA>=0 AND JAVA<=100);
+ALTER TABLE STUDENT ADD CONSTRAINT STUDENT_CK_SPRING CHECK(SPRING>=0 AND SPRING<=100);
+
+--ban 은 '햇님반','달님반','별님반' 만 추가할수 있도록 check 추가
+ALTER TABLE STUDENT ADD CONSTRAINT STUDENT_CK_BAN CHECK (BAN IN('햇님반','달님반','별님반'));
+
+--5개 정도만 데이타를 추가해보자
+INSERT INTO STUDENT VALUES(SEQ_STU.NEXTVAL,'유재석',177.1, 89,91,'햇님반');
+INSERT INTO STUDENT VALUES(SEQ_STU.NEXTVAL,'박명수',171.7, 64,71,'달님반');
+INSERT INTO STUDENT VALUES(SEQ_STU.NEXTVAL,'노홍철',179.2, 79,87,'별님반');
+INSERT INTO STUDENT VALUES(SEQ_STU.NEXTVAL,'정형돈',175.5, 78,97,'햇님반');
+INSERT INTO STUDENT VALUES(SEQ_STU.NEXTVAL,'정준하',189.7, 75,86,'달님반');
+INSERT INTO STUDENT VALUES(SEQ_STU.NEXTVAL,'하하',169.9, 62,71,'햇님반');
+
+--커밋하기
+COMMIT;
+
+--num>=4 이상 모두 삭제
+DELETE FROM STUDENT WHERE NUM>=4;
+
+-- num 이 3인 사람의 java점수를 99로 ,ban을 '달님반' 으로 수정
+UPDATE STUDENT SET JAVA=99, BAN='달님반' WHERE NUM=3;
+
+--num=2 인사람의 키를 188.9 로 수정
+UPDATE STUDENT SET HEIGHT=188.9 WHERE NUM=2;
+
+--num=2 인 데이타 삭제
+DELETE FROM STUDENT WHERE NUM=2;
+
+
+--데이타 3개정도 더 추가
+INSERT INTO STUDENT VALUES(SEQ_STU.NEXTVAL,'정형돈',175.5, 78,97,'햇님반');
+INSERT INTO STUDENT VALUES(SEQ_STU.NEXTVAL,'정준하',189.7, 75,86,'달님반');
+INSERT INTO STUDENT VALUES(SEQ_STU.NEXTVAL,'하하',169.9, 62,71,'햇님반');
+commit;
+--조회 : 이름  반 자바  스프링  총점  평균 -총점이 높은 사람부터 출력
+SELECT NAME 이름, BAN 반, JAVA 자바, SPRING 스프링, JAVA+SPRING 총점, (JAVA+SPRING)/2 평균 FROM STUDENT ORDER BY 총점 DESC;
+
+
+

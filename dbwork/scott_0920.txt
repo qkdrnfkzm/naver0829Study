@@ -1,0 +1,165 @@
+--comm이 null이 아닌 데이터 조회
+select * from emp where comm is not null;
+--comm이 널인경우 0으로 출력, 마지막 컬럼에 sal+comm을 더한 값을 출력
+select ename, sal, comm, sal+comm from emp; --숫자 + null = null
+--NVL(컬럼명, 값) : 해당 컬럼값이 null이면 0으촐 출력(mysql 에서는 isnull)
+select ename, sal, NVL(comm,0), sal+NVL(comm,0) from emp;
+
+--나중에 자바로 가져갈 경우 컬럼인덱스나 컬럼명으로 가저간다 그래서 컬럼명이 복잡한 경우 별칭을 지정한다
+select ename as "사원명", sal as "연봉" from emp; -- 별칭 : 공백이 없을 경우 ""생략 가능
+select ename 사원명, sal 연봉 from emp;
+select empno "사원 번호", sal 연봉 from emp; -- 별칭에 공백이 있는경우 반드시 ""(as생략 가능)
+
+select ename 사원명, sal 연봉, NVL(comm,0) 수수료, sal+NVL(comm,0) 총연봉 from emp;
+
+--총 글 갯수 출력
+select count(*) from emp;
+select count(*) count from emp;
+
+--문자열을 이어서 출력
+SELECT ename|| '님의 직업은 '||job||'입니다' member FROM emp;
+--xx님의 총 연봉은 xxx입니다(sal+comm, 널일경우 100으로 계산, 제목은 회원연봉
+SELECT ename || '님의 총 연봉은 ' || (sal+NVL(comm,100)) || '입니다' 회원연봉 from emp;
+
+--empno 여러개 조회
+SELECT empno, ename FROM emp WHERE empno=7369 OR empno=7788 OR empno=7900;
+--여러개 조회 시 in을 사용해보자
+SELECT empno, ename FROM emp WHERE empno IN(7369,7788,7900);
+--위의 3개의 empno를 빼고 출력
+SELECT empno, ename FROM emp WHERE empno NOT IN(7369,7788,7900);
+
+--ename, job 출력(job이 salesman 이거나 analyst)
+select ename, job from emp where job in ('SALESMAN', 'ANALYST', 'MANAGER');
+
+--날짜로 조건
+SELECT * from emp where hiredate='80/12/17';
+select * from emp where hiredate='1980-12-17';
+select * from emp where hiredate>='80/1/1' and hiredate<='81/10/10';
+
+--현재 날짜 조회
+SELECT sysdate FROM dual;
+--내일 날짜
+SELECT sysdate+1 FROM dual;
+--to char 변환 함수를 이용해서 조회
+SELECT to_char(sysdate,'yyyy-mm-dd') FROM dual;
+SELECT to_char(sysdate,'yyyy-mm-dd hh24:mi:ss') FROM dual;  --mi:분 / mm:월
+SELECT to_char(sysdate,'yyyy-mm-dd am HH:mi') FROM dual;    --오전 오후 am 또는 pm
+
+--emp 에서 ename, hiredate(yyyy-mm-dd) 를 출력하는데 1981년에 입사한 사람만 출력
+SELECT ename 사원명, to_char(hiredate, 'yyyy-mm-dd') 입사일 FROM emp WHERE hiredate>='81/01/01' AND hiredate<='81/12/31';
+SELECT ename 사원명, to_char(hiredate, 'yyyy-mm-dd') 입사일 FROM emp WHERE to_char(hiredate,'yyyy')=1981;
+
+--그룹함수: COUNT, MAX, MIN, AVG, SUM
+SELECT COUNT(*) FROM emp;   --갯수
+SELECT AVG(sal) FROM emp;   --평균
+SELECT ROUND(AVG(sal),1) FROM emp;  --ROUND : 반올림
+SELECT ROUND(AVG(sal),0) FROM emp; 
+SELECT ROUND(AVG(sal),-1) FROM emp; 
+
+SELECT SUM(sal) FROM emp; --합계
+SELECT MIN(sal) FROM emp; --최소값
+SELECT MAX(sal) FROM emp; --최대값
+--제일 적은 급여를 받는 사원의 이름
+SELECT ename 사원명 FROM emp WHERE sal = (SELECT MIN(sal) FROM emp);
+--제일 많은 급여를 받는 사원의 이름
+SELECT ename 사원명 FROM emp WHERE sal = (SELECT MAX(sal) FROM emp);
+--SCOTT의 직업과 같은 직업을 가진 사람들 조회(ENAME,JOB,SAL)
+SELECT ename, job, sal FROM emp WHERE job = (SELECT job FROM emp WHERE ename='SCOTT');
+--ALLEN 보다 더 높은 연봉을 받는 사람의 인원수는?
+SELECT COUNT(*) FROM emp WHERE sal>(SELECT sal FROM emp WHERE ename='ALLEN');
+
+--GROUP BY
+-- job 직업별로 일단 인원수를 구해보자
+SELECT JOB 직업, COUNT(*) 인원수 FROM EMP GROUP BY JOB;
+--위의 결과를 직업의 오름차순으로 출력
+SELECT JOB 직업, COUNT(*) 인원수 FROM EMP GROUP BY JOB ORDER BY 직업;
+--인원수 정렬
+SELECT JOB 직업, COUNT(*) 인원수 FROM EMP GROUP BY JOB ORDER BY 인원수;
+
+--직업별로 인원수, 평균연봉과 최저연봉, 최고연봉을 출력
+SELECT JOB 직업, COUNT(*) 인원수, ROUND(AVG(SAL),0) 평균연봉, MAX(SAL) 최고연봉, MIN(SAL) 최저연봉 FROM EMP GROUP BY JOB;
+
+--그룹에 대한 조건을 줄 경우 HAVING
+--직업별로 인원수, 평균연봉과 최저연봉, 최고연봉을 출력(인원수가 3이상)
+SELECT JOB 직업, COUNT(*) 인원수, ROUND(AVG(SAL),0) 평균연봉, MAX(SAL) 최고연봉, MIN(SAL) 최저연봉 FROM EMP GROUP BY JOB HAVING COUNT(*)>=3;
+
+
+--오라클 함수들
+--숫자함수
+SELECT ABS(-5), ABS(5) FROM dual; --ABS : 절대값
+SELECT CEIL(2.1), CEIL(2.9) FROM dual; --CEIL : 올림
+SELECT FLOOR(2.1), FLOOR(2.9) FROM dual; --FLOOR : 내림
+SELECT ROUND(2.1,0), ROUND(2.9,0) FROM dual; --ROUND : 반올림
+SELECT MOD(7,2) FROM dual;  -- MOD : 나머지
+SELECT POWER(2,3) FROM dual;  -- POWER : 지수승 -> 8
+
+--변환함수
+SELECT '7'+7 FROM dual; -- -> 14(to_number 안써도 됨)
+SELECT to_number('7')+7 FROM dual; -- -> 14
+SELECT to_char(sysdate,'yyyy-mm-dd') FROM dual;
+
+--문자함수
+SELECT CONCAT('Hello','World') FROM dual;   --문자열 합치기
+SELECT 'Hello' || 'World' FROM dual;   --문자열 합치기
+
+--나중에 자바에서 단어 입력하면 그 단어를 포함한 게시글을 출력하던가 할 때
+SELECT * FROM board WHERE subject LIKE '%'|| 변수명 ||'%'; --오라클
+SELECT * FROM board WHERE subject LIKE CONCAT( '%', 변수명 ,'%'); --mysql
+
+SELECT LPAD(23500,10,'*') FROM dual;    --총 10자리 중 남는 왼쪽 자리에 *로 채우기
+SELECT RPAD(23500,10,'*') FROM dual;    --총 10자리 중 남는 오른쪽 자리에 *로 채우기
+
+SELECT INITCAP('HELLO') FROM dual;  -- 첫글자 대문자
+SELECT LOWER('HELLO') FROM dual;    -- 전체 소문자
+SELECT UPPER('HELLO') FROM dual;    -- 전체 대문자
+
+SELECT INITCAP(ename), LOWER(ename), UPPER(ename) FROM emp;
+
+SELECT SUBSTR('HELLO KITTY',3,3) FROM dual; --3번째 부터 3글자 추출
+SELECT SUBSTR('HELLO KITTY',-3,3) FROM dual;    --뒤에서 3번째 부터 3글자 추출
+
+--ENAME, SAL 출력(ENAME은 두글자만 추출해서 출력 후 뒤에 '***' 붙여서 출력
+--SAL은 총 7자리로 출력하는데 앞에 ** 채워서 출력
+SELECT RPAD(SUBSTR(ename,1,2),5,'*') 사원명, LPAD(sal,7,'*') 연봉 FROM emp;
+SELECT SUBSTR(ename,1,2)||'***' 사원명, LPAD(sal,7,'*') 연봉 FROM emp;
+
+--양쪽 공백 제거
+SELECT '*'||TRIM('      HELLO         ')||'*' FROM dual;
+
+SELECT DECODE(4,1,'ONE',2,'TWO',3,'THREE',4,'FOUR') FROM dual;
+SELECT ename, deptno, DECODE(deptno,10,'부산',20,'대구',30,'제주도') FROM emp;
+
+--문제풀기
+--1. emp테이블에서 ename a나 s로 시작하는사람 출력(대소문자 상관없음)
+SELECT ename FROM emp WHERE UPPER(ename) LIKE 'A%' OR UPPER(ename) LIKE 'S%';
+  
+--2. emp테이블에서 ename 에서 두번째 글자가 'A' 인사람 출력
+SELECT ename FROM emp WHERE ename LIKE '_A%';
+  
+--3. job 에서 같은 직업군일경우 한번씩만 출력하시오(오름차순으로 출력)
+SELECT job FROM emp GROUP BY job ORDER BY job asc;
+SELECT DISTINCT job FROM EMP ORDER BY 1;
+  
+--4. job 종류별로 인원수를 구하시오(인원수의 내림차순으로 출력)
+SELECT job, COUNT(*) COUNT FROM emp GROUP BY job ORDER BY COUNT DESC;
+
+--5. job 종류별로 sal 의 평균급여를 구하시오,평균급여의 오름차순으로 출력
+SELECT job, ROUND(AVG(sal),0) AS AVG FROM emp GROUP BY job ORDER BY AVG;
+
+--6. job 종류별로 sal 의 최대값과 최소값을 구하시오
+SELECT job, MIN(sal), MAX(sal) FROM emp GROUP BY job;
+
+--7. deptno 가 10인경우 '홍보부'
+--   20 인경우 '개발부' 30인경우 '관리부' 부서를 구하여
+--   ename, 부서 를 출력하시오
+SELECT ename, DECODE(deptno,10,'홍보부',20,'개발부',30,'관리부') DEPT FROM emp;
+  
+--8. 급여(sal)가 sal 의 평균보다 더 높은 사람만 ename 과 sal 을 출력하시오
+SELECT ename, sal FROM emp WHERE sal>=(SELECT AVG(sal) FROM emp);
+
+--9. hiredate 에서 월이 5월인 사람만 ename 과 hiredate 를 출력하시오
+SELECT ename, hiredate FROM emp WHERE to_char(hiredate,'mm')=05;
+
+--10. SCOTT 의 급여와 동일하거나 더 많이 받는 사원명과 급여를 출력하라
+SELECT ename, sal FROM emp WHERE sal>=(SELECT sal FROM emp WHERE ename='SCOTT;
+
