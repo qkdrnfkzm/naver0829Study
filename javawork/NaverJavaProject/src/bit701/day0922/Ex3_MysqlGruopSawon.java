@@ -23,7 +23,7 @@ public class Ex3_MysqlGruopSawon {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		String sql = "select buseo, count(*) count, max(score) maxscore, min(score) minscore, avg(score) avgscore from sawon group by buseo";
+		String sql = "select dept, count(*) count, max(score) maxscore, min(score) minscore, avg(score) avgscore from sawon group by dept";
 
 		try {
 			conn = DriverManager.getConnection(MYSQL_URL, "root", "1234");
@@ -34,7 +34,7 @@ public class Ex3_MysqlGruopSawon {
 			System.out.println("부서\t인원수\t최고점수\t최소점수\t평균점수");
 			System.out.println("-".repeat(40));
 			while (rs.next()) {
-				String dept = rs.getString("buseo");
+				String dept = rs.getString("dept");
 				int count = rs.getInt("count");
 				int max = rs.getInt("maxscore");
 				int min = rs.getInt("minscore");
