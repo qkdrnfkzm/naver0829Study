@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Inter&family=Jua&family=Nanum+Pen+Script&family=REM&family=Single+Day&display=swap"
+		rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+	<style>
+		body * {
+			font-family: "Jua";
+		}
+
+		div.one>div.box {
+			width: 50px;
+			height: 50px;
+			cursor: pointer;
+			border: 1px solid gray;
+			margin: 5px;
+			float: left;
+		}
+
+		div.result {
+			border: 5px insert gray;
+			text-align: center;
+			margin: 50px 100px;
+			width: 300px;
+		}
+	</style>
+	<script>
+		$(function () {
+			//div.box에 마우스를 올리면 해당색상을 얻어서 result 의 색상을 변경하고, h3의 글자를 얻어서 h1에 넣기, 별점을 얻어서 result의 h3에 넣기
+
+			$("div.box").mouseover(function () {
+				$("div.result")
+					.css("background-color", $(this).css("background-color"))
+					.find("h1").text($(this).next().text())
+					.next().text($(this).next().next().find("span").text());
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<div class="one">
+		<div class="box" style="background-color: aquamarine;"></div>
+		<h3>즐거운 금요일</h3>
+		<div class="message">
+			<span>☆☆☆☆★</span>
+		</div>
+		<div style="clear: both;"></div>
+		<div class="box" style="background-color: palevioletred;"></div>
+		<h3>나는 솔로</h3>
+		<div class="message">
+			<span>☆☆★★★</span>
+		</div>
+		<div style="clear: both;"></div>
+		<div class="box" style="background-color: plum;"></div>
+		<h3>무빙</h3>
+		<div class="message">
+			<span>☆★★★★</span>
+		</div>
+		<div style="clear: both;"></div>
+		<div class="box" style="background-color: skyblue;"></div>
+		<h3>밀수</h3>
+		<div class="message">
+			<span>☆☆☆★★</span>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<div class="result">
+		<h1>메세지얻기</h1>
+		<h3>별점얻기</h3>
+	</div>
+</body>
+
+</html>
