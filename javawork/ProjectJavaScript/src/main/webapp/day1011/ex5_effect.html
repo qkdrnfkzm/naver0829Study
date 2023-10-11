@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Inter&family=Jua&family=Nanum+Pen+Script&family=REM&family=Single+Day&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+	<style>
+		body * {
+			font-family: "Jua";
+		}
+	</style>
+	<script>
+		$(function () {
+			// 제목부분
+			$(".title>b").css({
+				"cursor": "pointer",
+				"font-size": "22px"
+			});
+
+			//내용응 일단 안보이게 처리
+			$("div.content").hide();
+
+			//제목을 클릭 시 해당 기사가 slideDown 효과로 보이게 한다
+			$(".title>b").click(function () {
+				$(this).next().slideDown('slow');
+
+				//나머지는 내용이 닫히도록 한다(slideUp)
+				$(this).parent().siblings().find(".content").slideUp('slow');
+			});
+		})
+	</script>
+</head>
+
+<body>
+	<div class="title alert alert-danger">
+		<b>손흥민도 인정한 '킹' 아자르, 32살에 충격 현역 은퇴...앙리 이후 최초 미친 기록 조명</b>
+		<div class="content">
+			에당 아자르는 은퇴하기 전에는 조롱거리로 전락했지만 프리미어리그(PL) 현역 선수들한테도 찬사를 받았던 '킹'이었다.
+			아자르는 10일(한국시간) 개인 SNS에 "이젠 멈춰야 할 때다. 16년 동안 700경기 이상을 뛰면서 프로 선수 생활을 마감하기로 했다. 세계 많은 팀에서 뛰고 재미있게 공을 차면서 꿈을
+			실현했다. 내 경력 동안 좋은 감독, 코치, 팀원들을 만난 것은 행운이었다. 좋은 시간을 보내주신 모든 분들께 감사하고 보고 싶을 거다"고 말했다.
+			이어 "내가 뛰었던 모든 클럽들에 감사하다. 릴, 첼시, 그리고 레알 마드리드. 여기에 벨기에 대표팀에게도 감사를 표한다. 가족, 친구들은 좋은 일과 나쁠 때나 가까이 지내 준 사람들에게 특별히
+			감사를 드린다. 그동안 날 따라와 주시고 내가 뛰는 곳마다 격려해주신 팬 여러분들께 큰 감사를 드린다. 새로운 경험을 할 때다. 조만간 필드에서 보자"고 덧붙였다.
+			아자르는 첼시 시절에는 PL 킹이라고 불렸던 선수다. 현재 케빈 더 브라위너와 엘링 홀란드가 가지고 있던 위상과 같은 수준이었다고 보면 된다. 첼시의 라이벌인 토트넘에서 뛰고 있는 손흥민도
+			아자르의 실력만큼은 인정했다.
+		</div>
+
+	</div>
+	<div class="title alert alert-info">
+		<b>엑스포츠뉴스
+			토트넘 '이달의 골' 손흥민, 'EPL 이달의 선수' 임박?→겹경사 기대감</b>
+		<div class="content">
+			(엑스포츠뉴스 권동환 기자) 토트넘 홋스퍼 캡틴 손흥민이 구단 이달의 골 선정에 이어 프리미어리그 9월 최고의 선수로 뽑힐 가능성이 높아 겹경사를 앞두고 있다.
+			토트넘은 지난 10일(한국시간) 구단 공식 SNS를 통해 손흥민이 아스널과 원정 경기에서 뽑아낸 1-1 동점골이 2023년 9월 '이달의 골'로 선정했다고 알렸다. 45%의 지지율을 기록했다.
+			손흥민은 지난달 25일 영국 런던에 위치한 에미레이츠 스타디움에서 열린 2023/24 잉글리시 프리미어리그 6라운드 아스널과의 '북런던 더비'에서 토트넘이 0-1로 뒤지고 있던 전반 42분
+			동점포를 꽂아넣었다. 페널티 지역 왼쪽에서 신입생 브레넌 존슨이 슈팅한 것을 아스널 수문자 다비드 라야가 걷어내지 이를 왼쪽 수비수 데스티니 우도지가 잡아 왼쪽 골라인 부근에 있던 제임스
+			매디슨에게 내줬다.
+			이후 매디슨이 상대 수비를 뚫고 골라인 부근에서 컷백 패스를 내줬고 이를 번개처럼 달려들던 손흥민이 오른발로 방향 바꿔 아스널 골망을 출렁였다. 손흥민은 득점 뒤 6만 아스널 관중 앞에서 '쉿'
+			세리머니를 하며 포효했다. 지난 시즌과 달리 토트넘이 아스널에 쉽게 무너지지 않겠다는 신호였다.
+		</div>
+
+	</div>
+	<div class="title alert alert-warning">
+		<b>김민재 떠났다고 이렇게 망가지나...'33년 만에 우승' 나폴리, 벌써 감독 경질 준비</b>
+		<div class="content">
+			나폴리는 지난 시즌 33년 만에 대업을 이룬 팀이 맞나 싶을 정도로 망가졌다.
+			이탈리아 축구 소식에 정통한 지안루카 디 마르지오 기자는 9일(한국시간) "루디 가르시아 나폴리 감독이 경질될 수 있다. 피오렌티나에 홈 패배를 당한 후 아우렐리오 데 아우렌티스 나폴리 회장은
+			가르시아 감독과 계속 동행할지를 고민하게 됐다. 내부 회의를 했고 가르시아 감독은 보드진과 만났다. 팀이 완전히 무너졌다는 평가다"고 보도했다.
+			나폴리는 2022-23시즌을 자신들의 시즌으로 만들었다. 루치아노 스팔레티 감독의 축구가 완전히 자리를 잡으면서 리그를 지배하기 시작했다. 가성비 영입이라 걱정이 많았던 김민재와 흐비차
+			크라바츠헬리아는 그야말로 초대박 복권이었다. 이탈리아 세리에A를 넘어 유럽 최고의 실력을 보여주면서 나폴리는 앞으로만 나아갔다.
+
+		</div>
+
+	</div>
+
+</body>
+
+</html>

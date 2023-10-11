@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Inter&family=Jua&family=Nanum+Pen+Script&family=REM&family=Single+Day&display=swap"
+		rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+	<style>
+		body * {
+			font-family: "Jua";
+		}
+	</style>
+	<script>
+
+	</script>
+</head>
+
+<body>
+	<h4 class="alert alert-warning">학력사항</h4>
+	<script>
+		let arr1 = ["고졸", "전문대졸", "대졸", "석사", "박사", "유학파?"];
+		$.each(arr1, function (idx, item) {
+			let s =
+				`
+				<label>
+					<input type="radio" name="grade" value="${item}" ${idx == 2 ? "checked" : ""}>${item}
+				</label>
+				`;
+			document.write(s);
+		});
+	</script>
+
+	<h4 class="alert alert-danger">구현 가능한 언어</h4>
+	<script>
+		let lang = ["Java", "HTML5", "CSS", "JavaScript", "ES6", "Spring Framework", "Spring Boot", "Python", "Git", "Oracle", "Linux", "Mysql", "JSP", "ThymeLeaf", "Naver Cloud"];
+
+		//체크박스로 나열(name="lang"), 한줄에 5개씩 출력
+		$.each(lang, function (index, item) {
+			let s =
+				`
+				<label style="width: 160px">
+					<input type="checkbox" name="lang" value="${item}"}>${item}
+				</label>
+				${index % 3 == 2 ? "<br>" : ""}
+				`;
+			document.write(s);
+		});
+	</script>
+
+	<h4 class="alert alert-danger">거주지</h4>
+	<script>
+		let city = ["서울시 강남구", "서울시 강북구", "서울시 송파구", "제주시 애월읍", "제주시 한림읍", "서울시 강동구", "부산시 동구", "경기도 용인시", "경기도 성남시", "서울시 강동구", "경기도 하남시", "서울시 서초구"];
+
+		// select 문으로 만들어 보세요
+		// 첫 줄은 "지역을 선택하세요" 라고 고정
+		// class ="city"
+		let s =
+			`
+			<select class= "city form-select" style= "width: 200px">
+			<option selected hidden disabled>지역을 선택 하세요</option>	
+			`;
+		$.each(city, function (index, item) {
+			s += `<option>${item}</option>`;
+		});
+		s += `</select>`;
+		document.write(s);
+	</script>
+
+	<button type="button" class="btn btn-lg btn-outline-success" style="margin:30px 200px">결과 출력</button>
+	<div class="result" style="font-size: 20px;margin: 30px;"></div>
+	<script>
+		$(".btn").click(function () {
+
+			let grade = $("input[name='grade']:checked").val();
+			let lang = "";
+			let lang_cnt = $("input[name='lang']:checked").length;
+			if (lang_cnt == 0) {
+				lang = "구현 가능한 언어가 없습니다";
+			} else {
+				$("input[name='lang']:checked").each(function (index) {
+					lang += $(this).val()+"&nbsp;";
+				});
+			}
+			let city = $(".city").val();
+
+			let s = `최종학력 : ${grade}<br>구현 가능한 언어 : ${lang}<br> 거주지 : ${city == null ? "거주지를 선택해 주세요" : city}`;
+
+			$(".result").html(s);
+		});
+	</script>
+
+
+</body>
+
+</html>

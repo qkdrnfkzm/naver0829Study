@@ -18,7 +18,7 @@ class Solution_2 {
 
 	public static void main(String[] args) {
 		Solution_2 s = new Solution_2();
-		int n = 40;
+		int n = 235;
 		System.out.println(n + " : " + s.solution(n));
 	}
 }

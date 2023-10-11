@@ -44,9 +44,11 @@
 
 			let s = `<table>`;
 			$.each(arr, function (index, item) {
-				s += `<tr>`;
-				s += `<td><img src="${item.photo}" style="width:200px;height:200px;"></td>`;
-				s += `<td style= "font-size:1.2em; text-align:center;">${item.sname}<br>${item.price}원<br>`;
+				s += `
+					<tr>
+					<td><img src="${item.photo}" style="width:200px;height:200px;"></td>
+					<td style= "font-size:1.2em; text-align:center;">${item.sname}<br>${item.price}원<br>
+					`;
 
 				$.each(item.color, function (index2, item2) {
 					s += `<div class="color" style="background-color: ${item2}"></div>`;

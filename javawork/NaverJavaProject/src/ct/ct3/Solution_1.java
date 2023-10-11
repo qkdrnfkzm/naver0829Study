@@ -8,15 +8,16 @@ class Solution_1 {
 
 		int[] answer = new int[n + 1];
 		int s = 0;
-
+		
 		for (int i = 1; i < answer.length; i++) {
 			for (int j = 1; j < answer.length; j++) {
-				if (s % 10 == 3 || s % 3 == 0 || s / 10 == 3) {
+				if (s % 10 == 3 || s % 3 == 0 || s / 10 == 3 || (s / 10) % 10 == 3) {
 					++s;
 				}
 			}
 			answer[i] = s;
 			s++;
+			System.out.println(i + " : " + answer[i]);
 		}
 
 		return answer[n];
@@ -24,7 +25,7 @@ class Solution_1 {
 
 	public static void main(String[] args) {
 		Solution_1 s = new Solution_1();
-		int n = 40;
+		int n = 100;
 		System.out.println(n + " : " + s.solution(n));
 
 	}
