@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Inter&family=Jua&family=Nanum+Pen+Script&family=REM&family=Single+Day&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+	<style>
+		body * {
+			font-family: "Jua";
+		}
+
+		.mytooltip {
+			position: absolute;
+			line-height: 1.5;
+			color: black;
+			width: 200px;
+			background-color: #f90;
+			border: 2px solid white;
+			padding: 10px;
+			font-size: 14px;
+			border-radius: 30px;
+			opacity: 0.8;
+			display: none;
+		}
+
+		.view {
+			cursor: pointer;
+			text-decoration: underline;
+			background-color: #ccc;
+		}
+
+		ol.today li {
+			width: 200px;
+			cursor: pointer;
+			background-color: #ccc;
+		}
+
+		ol.today li:hover {
+			background-color: rgba(0, 0, 0, 0.3);
+		}
+	</style>
+	<script>
+		$(function () {
+			$("a").bind({
+				mousemove: function (e) {
+					$("div.mytooltip").css({"left": e.pageX + "px", "top": e.pageY + "px"});
+				}, mouseover: function () {
+					$("div.mytooltip").fadeIn('fast');
+				}, mouseout: function () {
+					$("div.mytooltip").fadeOut('fast');
+				}
+			});
+			$(".view").bind({
+				mousemove: function (e) {
+					$("div.mytooltip").css({"left": e.pageX + "px", "top": e.pageY + "px"});
+				}, mouseover: function () {
+					let color = $(this).attr("color");
+					let text = $(this).text();
+					$("div.mytooltip").css("color", color).html(text);
+					$("div.mytooltip").fadeIn('fast');
+				}, mouseout: function () {
+					$("div.mytooltip").fadeOut('fast');
+				}
+			});
+			$("ol.today li").bind({
+				mousemove: function (e) {
+					$("div.mytooltip").css({"left": e.pageX + "px", "top": e.pageY + "px"});
+				}, mouseover: function () {
+					let photo = $(this).attr("photo");
+					let text = $(this).text();
+					$("div.mytooltip").html(`<b>${text}</b><br><img src="${photo}" border=2 width=100>`);
+					$("div.mytooltip").fadeIn('fast');
+				}, mouseout: function () {
+					$("div.mytooltip").fadeOut('fast');
+				}
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<h4 class="alert alert-danger">Tooltip 링크에 마우스를 올려보세요</h4>
+	<br><br>
+	<a style="font-size: 25px; cursor: pointer;">
+		Tooltip Tooltip Tooltip Tooltip
+	</a>
+	<pre>
+	<h3>호날두가 SON 위에’ <b class="view" color="blue">손흥민</b>, 현폼 세계 TOP 20 올랐다…1위는?</h3>
+<b class="view" color="blue">손흥민</b>(31·토트넘)이 맹활약을 인정받았다.
+영국 매체 90MIN은 11일(현지시간) 2023~24시즌 세계 최고의 축구 선수 랭킹 톱20을 공개했다. 매체는 현재 폼을 고려해 순위를 매겼다.
+<b class="view" color="blue">손흥민</b>은 17위에 이름을 올렸다. 매체는 “로빈이었던 <b class="view" color="blue">손흥민</b>은 이제 토트넘의 배트맨이 됐으며 새로운 역할을 꽤 잘 수행하고 있다”며 “<b class="view" color="blue">손흥민</b>은 북런던 더비에서의 득점을 포함해 잉글랜드 프리미어리그(EPL) 8경기에 출전해 6골을 넣으며 팀을 1위로 이끌었다”고 조명했다.
+올 시즌 <b class="view" color="blue">손흥민</b>은 EPL에서 가장 매서운 감각을 자랑한다. 지난달 번리를 상대로 해트트릭을 작성한 <b class="view" color="blue">손흥민</b>은 이어진 아스널전에서 2골, 리버풀전에서 1골을 기록했다. 9월에만 6골을 몰아넣었다.
+<b class="view" color="blue">손흥민</b>과 토트넘의 선두 질주를 이끄는 제임스 매디슨도 11위에 올랐다. 매체는 “올여름 EPL 최고의 영입인가? 당연하다”며 “매디슨은 이미 5개의 어시스트를 기록하는 등 토트넘의 주요 공격수로 빠르게 자리 잡았다”고 했다.
+토트넘 <b class="view" color="blue">손흥민</b>(왼쪽)이 24일 아스널과의 북런던 더비 원정에서 골을 넣은 뒤 제임스 매디슨과 함께 골 세리머니를 하고 있다. 사진=게티이미지
+30일 열린 알 샤밥과의 경기에서 2골 1도움을 올리며 맹활약한 크리스티아누 호날두. 사진=호날두 SNS
+
+사우디아라비아에서 활약 중인 크리스티아누 호날두(알 나스르)가 10위에 이름을 올렸다. 매체는 “호날두는 어디에 있든 항상 골을 넣을 것”이라며 “프로 축구 22번째 시즌을 맞이한 호날두는 알 나스르에서 17경기 17골이라는 놀라운 기록을 세웠다. 그는 여전히 가장 강력한 마무리 능력을 지닌 선수 중 하나”라고 칭찬했다. 
+매체는 리그의 수준 등을 따지지 않았고, 오로지 현재의 폼만 고려해 톱20을 뽑았다. 호날두가 <b class="view" color="blue">손흥민</b>보다 위에 있을 수 있는 배경이다. 미국 무대를 누비는 리오넬 메시(인터 마이애미)도 15위에 올랐다.
+천재 미드필더 주드 벨링엄(레알 마드리드)이 1위를 차지했다. 매체는 “벨링엄은 불과 20세의 나이에 레알에서 10경기에 나서 10골을 넣으며 세계 최대 축구 클럽의 리더가 됐다”며 엄지를 세웠다.
+그 뒤로는 모하메드 살라(리버풀) 라우타로 마르티네스(인터 밀란) 엘링 홀란(맨체스터 시티) 킬리안 음바페(파리 생제르맹) 로드리(맨시티) 해리 케인(바이에른 뮌헨) 세루 기라시(슈투트가르트) 산티아고 히메네스(페예노르트) 호날두 순으로 톱10을 형성했다.
+	</pre>
+	<hr />
+	<h2>오늘 나의 식사 및 쇼핑 목록</h2>
+	<ol type="1" class="today">
+		<li photo="../food/1.jpg">에그샌드위치</li>
+		<li photo="../food/11.jpg">망고빙수</li>
+		<li photo="../food/8.jpg">회색스위터</li>
+		<li photo="../shop/29.jpg">여름용모자</li>
+
+	</ol>
+
+	<div class="mytooltip">
+		Java<br>
+		HTML5<br>
+		SpringBoot<br>
+		React<br>
+		jQuery
+	</div>
+
+</body>
+
+</html>

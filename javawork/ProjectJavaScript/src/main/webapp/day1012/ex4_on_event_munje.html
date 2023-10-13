@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Inter&family=Jua&family=Nanum+Pen+Script&family=REM&family=Single+Day&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+	<style>
+		body * {
+			font-family: 'Jua';
+		}
+
+		div {
+			position: absolute;
+			width: 300px;
+			height: 150px;
+			font-size: 19px;
+		}
+
+		#one {
+			left: 50px;
+			top: 100px;
+		}
+
+		#two {
+			left: 330px;
+			top: 100px;
+		}
+
+		#three {
+			left: 700px;
+			top: 100px;
+		}
+
+		#result {
+			left: 100px;
+			font-size: 2em;
+			text-align: center;
+			width: 1000px;
+			top: 400px;
+			border: 3px solid gold;
+			border-radius: 30px;
+			padding-top: 20px;
+			visibility: hidden;
+		}
+
+		#two h3:hover,
+		#three h3:hover {
+			cursor: pointer;
+			background-color: orange;
+		}
+
+		#btn_rez {
+			width: 100px;
+			height: 40px;
+			font-size: 17px;
+			color: white;
+			background-color: forestgreen;
+			border: 2px solid black;
+			border-radius: 20px;
+		}
+
+		#btn_cinema,
+		#btn_movie {
+			width: 100px;
+			height: 40px;
+			font-size: 17px;
+			color: black;
+			background-color: lightpink;
+			border: 2px solid black;
+			border-radius: 20px;
+			margin-right: 10px;
+		}
+	</style>
+
+	<script>
+		/*
+			[문제]
+			요구사항
+			처음에는 일단 [영화예매] 버튼만 만든다
+			영화예매 버튼을 누르면 특정공간에 [극장선택] 버튼과 [영화선택] 버튼이 나온다
+			극장선택을 누르면 특정영역에 극장 목록이 나오고
+			영화선택늘 누르면 3번 영역에 영화제목들로 변경된다
+			극장이나 영화제목을 누르면 특정공간에 극장명과 영화 제목을 나오도록 한다
+		 */
+
+		$(function () {
+			let theater = "", movie = "";
+			$(document).on("click", "#btn_rez", function () {
+				$("#btn_cinema").remove();
+				$("#btn_movie").remove();
+				$("div#two").append(`<button id="btn_cinema" type="button">극장선택</button>`);
+				$("div#two").append(`<button id="btn_movie" type="button">영화선택</button>`);
+				$("#result").css("visibility", "visible");
+			})
+			$(document).on("click", "#btn_cinema", function () {
+				$(".cinema").remove();
+				$(".movie").remove();
+				$("div#three").append(`<h3 class="cinema">CGV강남</h3>`)
+				$("div#three").append(`<h3 class="cinema">CGV강변</h3>`)
+				$("div#three").append(`<h3 class="cinema">CGV건대입구</h3>`)
+				$("div#three").append(`<h3 class="cinema">CGV구로</h3>`)
+			})
+
+			$(document).on("click", "#btn_movie", function () {
+				$(".cinema").remove();
+				$(".movie").remove();
+				$("div#three").append(`<h3 class="movie">화사한 그녀</h3>`)
+				$("div#three").append(`<h3 class="movie">1947 보스톤</h3>`)
+				$("div#three").append(`<h3 class="movie">거미집</h3>`)
+				$("div#three").append(`<h3 class="movie">화란</h3>`)
+				$("div#three").append(`<h3 class="movie">30일</h3>`)
+			})
+			$(document).on("click", "#three h3", function () {
+				var select = $(this).attr("class");
+				if (select == 'cinema') {
+					cinema = "상영관 : " + $(this).text();
+				} else {
+					movie = "영화 : " + $(this).text();
+				}
+				$("#result").html(cinema + "<br>" + movie);
+			})
+		})
+
+
+	</script>
+</head>
+
+<body>
+	<div id="one">
+		<button id="btn_rez" type="button">영화예매</button>
+
+	</div>
+
+	<div id="two"></div>
+	<div id="three">
+	</div>
+	<div id="result"></div>
+</body>
+
+</html>
