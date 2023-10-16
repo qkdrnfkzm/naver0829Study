@@ -1,3 +1,6 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="myshop.data.MyShopDto"%>
+<%@page import="myshop.data.MyShopDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -27,21 +30,35 @@ img.photo {
 	border: 5px groove orange;
 }
 </style>
+<%
+String num = request.getParameter("num");
+//dao 선언
+MyShopDao dao = new MyShopDao();
+//dto 얻기
+MyShopDto dto = dao.getSangpums(num);
+%>
 </head>
 <body>
-<form action="./myshopinsert.jsp" method="post">
+<form action="./myshopupdate.jsp" method="post">
+	<!-- hidden 값 : 브라우저에 보이지는 않지만 폼전달 시 반드시 같이 넘겨야 하는 경우
+	hidden으로 주는데 form 안에 어디에 있던 상관 없다(주로 상단에 넣음) -->
+	<input type="hidden" name="num" value="<%=dto.getNum()%>">
 	<table class="table table-bordered" style="width: 300px; margin: 30px 100px;">
 		<caption align="top"><b>상품 등록</b></caption>
 		<tr>
 			<td align="center" width="100">상품명</td>
-			<td><input type="text" name="sangpum" class="form-control" required="required" autofocus="autofocus" /></td>
+			<td><input type="text" name="sangpum" class="form-control" required="required" autofocus="autofocus" value="<%=dto.getSangpum() %>" /></td>
 		</tr>
 		<tr>
 			<td align="center" width="100">사진선택</td>
 			<td>
 				<select name="photo" id="photo" class="form-select">
-				<%for(int i=1;i<=34;i++){ %>
-					<option value="<%=i%>.<%=i==24?"gif":"jpg" %>">상품 <%=i %></option>
+				<%
+				//현재 num값의 getPhoto()의 확장자 지우고 파일명만 획득
+				int n = Integer.parseInt(dto.getPhoto().substring(0,dto.getPhoto().indexOf(".")));
+				for ( int i = 1; i <= 34 ; i++ ) { 
+				%>
+					<option value="<%=i%>.<%=i==24?"gif":"jpg" %>" <%=i==n?"selected":"" %>>상품 <%=i %></option>
 				<%} %>
 				</select>
 				<script type="text/javascript">
@@ -54,21 +71,21 @@ img.photo {
 		</tr>
 		<tr>
 			<td align="center" width="100">색 상</td>
-			<td><input type="color" name="color" class="form-control" value="#cccccc"/></td>
+			<td><input type="color" name="color" class="form-control" value="<%=dto.getColor()%>"/></td>
 		</tr>
 		<tr>
 			<td align="center" width="100">가 격</td>
-			<td><input type="number" name="price" class="form-control" required="required" step="500" min="1000" max="100000"/></td>
+			<td><input type="number" name="price" class="form-control" required="required" step="500" min="1000" max="100000" value="<%=dto.getPrice()%>"/></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-			<button type="submit">DB저장</button>
-			<button type="button" onclick="location.href='myshop.jsp'">목록보기</button>
+			<button type="submit">DB수정</button>
+			<button type="button" onclick="history.back()">이전으로</button>
 			</td>
 		</tr>
 	</table>
 </form>
-<img src="../shop/1.jpg" class="photo" alt="" />
+<img src="../shop/<%=dto.getPhoto() %>" class="photo" alt="" />
 
 </body>
 </html>
