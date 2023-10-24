@@ -1,4 +1,4 @@
-package ct.ct3;
+package codingTest.CodingTest3;
 
 public class Solution_3 {
 	public int solution(int[] common) {

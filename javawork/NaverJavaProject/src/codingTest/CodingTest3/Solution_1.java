@@ -1,4 +1,4 @@
-package ct.ct3;
+package codingTest.CodingTest3;
 
 class Solution_1 {
 	public int solution(int n) {

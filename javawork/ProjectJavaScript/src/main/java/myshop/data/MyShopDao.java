@@ -114,28 +114,28 @@ public class MyShopDao {
 		}
 		return dto;
 	}
-	
-	// insert
-		public void updateShop(MyShopDto dto) {
-			Connection conn = db.getConnection();
-			PreparedStatement pstmt = null;
-			String sql = "update myshop set sangpum =?, color=?, price=?, photo=?, writeday=now() where num=?";
 
-			try {
-				pstmt = conn.prepareStatement(sql);
+	// update
+	public void updateShop(MyShopDto dto) {
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		String sql = "update myshop set sangpum =?, color=?, price=?, photo=?, writeday=now() where num=?";
 
-				pstmt.setString(1, dto.getSangpum());
-				pstmt.setString(2, dto.getColor());
-				pstmt.setInt(3, dto.getPrice());
-				pstmt.setString(4, dto.getPhoto());
-				pstmt.setInt(5, dto.getNum());
+		try {
+			pstmt = conn.prepareStatement(sql);
 
-				pstmt.execute();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} finally {
-				db.dbClose(pstmt, conn);
-			}
+			pstmt.setString(1, dto.getSangpum());
+			pstmt.setString(2, dto.getColor());
+			pstmt.setInt(3, dto.getPrice());
+			pstmt.setString(4, dto.getPhoto());
+			pstmt.setInt(5, dto.getNum());
+
+			pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(pstmt, conn);
 		}
+	}
 }

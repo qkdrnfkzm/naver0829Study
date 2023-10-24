@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="javax.swing.ImageIcon"/>
     <fullyQualifiedTypeName name="bit701.book_test.Coding_Test0921"/>
     <fullyQualifiedTypeName name="bit701.day0922.Ex1_OracleJdbc"/>
     <fullyQualifiedTypeName name="bit701.day0922.Ex2_MysqlJdbc"/>
@@ -20,7 +19,6 @@
     <fullyQualifiedTypeName name="bit701.day0925.Ex7_SawonCrud"/>
     <fullyQualifiedTypeName name="com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream"/>
     <fullyQualifiedTypeName name="bit701.day0925.Ex8_SawonSerch"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="bit701.day0925.Ex9_StudentCrud"/>
     <fullyQualifiedTypeName name="java.security.Timestamp"/>
     <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
@@ -60,4 +58,6 @@
     <fullyQualifiedTypeName name="myshop.data.MyShopDto"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.lang.Math"/>
 </qualifiedTypeNameHistroy>

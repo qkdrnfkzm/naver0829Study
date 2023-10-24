@@ -32,8 +32,8 @@ body * {
 		<th width="100">점수</th>
 		<td class="input-group">
 			<input type="text" name="java" value="0" step="10" class="form-control"/>
-			<input type=""text"" name="jsp" value="0" step="10" class="form-control"/>
-			<input type=""text"" name="spring" value="0" step="10" class="form-control"/>
+			<input type="number" name="jsp" value="0" step="10" class="form-control"/>
+			<input type="text" name="spring" value="0" step="10" class="form-control"/>
 		</td>
 	</tr>
 	<tr>

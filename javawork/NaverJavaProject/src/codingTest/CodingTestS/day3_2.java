@@ -1,4 +1,4 @@
-package ct.ctsolo;
+package codingTest.CodingTestS;
 
 import java.util.Arrays;
 
