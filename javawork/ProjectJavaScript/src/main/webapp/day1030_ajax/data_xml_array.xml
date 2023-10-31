@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<stu name="정우영">
+		<class_name>햇님반</class_name>
+		<java>90</java>
+		<spring>76</spring>
+		<html>55</html>
+	</stu>
+	<stu name="조현우">
+		<class_name>달님반</class_name>
+		<java>100</java>
+		<spring>95</spring>
+		<html>89</html>
+	</stu>
+	<stu name="백승호">
+		<class_name>꽃님반</class_name>
+		<java>80</java>
+		<spring>88</spring>
+		<html>88</html>
+	</stu>
+	<stu name="황희찬">
+		<class_name>햇님반</class_name>
+		<java>91</java>
+		<spring>76</spring>
+		<html>77</html>
+	</stu>
+</data>

@@ -6,3 +6,5 @@ create table myshop(
     color varchar(20),
     writeday datetime
 );
+
+select * from myshop;
